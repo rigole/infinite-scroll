@@ -3,8 +3,16 @@ const loader = document.getElementById('loader');
 let photoArray = [];
 // unsplash API parameters
 const apiKey = 'y2EVDVf4pH34kHsagP5allFVk0D_1kx5EX_71LEwmWE';
-const count = 10;
+const count = 30;
 const urlAPI =  `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`;
+
+//check if all images were loaded
+function imageLoaded() {
+    console.log('image loaded')
+}
+
+
+// Helper to set Attribute and create elements
 
 //Get photos from unsplash API
 function displayPhotos() {
@@ -24,6 +32,9 @@ function displayPhotos() {
         item.appendChild(img);
         imageContainer.appendChild(item);
     });
+
+    img.addEventListener('load', imageLoaded);
+
 }
 
 // Create Elements for Link,Photos, Add to DOM
@@ -37,5 +48,10 @@ async function getPhotos() {
         
     }
 }
+// Check if scrolling near bottom, LOad More photos
+/*window.addEventListener('scroll', =>{
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000){
 
+    }
+});*/
 getPhotos();
